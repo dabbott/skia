@@ -494,6 +494,7 @@ EMSCRIPTEN_BINDINGS(skia) {
         .function("getFillType", &SkPath::getFillType)
         .function("getFillTypeString", &GetFillTypeString)
         .function("getBounds", &SkPath::getBounds)
+        .function("contains", &SkPath::contains)
         .function("computeTightBounds", &SkPath::computeTightBounds)
         .function("equals", &Equals)
         .function("copy", &CopyPath)

@@ -1421,6 +1421,7 @@ skia_static_library("pathkit") {
     "src/core/SkAnalyticEdge.cpp",
     "src/core/SkArenaAlloc.cpp",
     "src/core/SkContourMeasure.cpp",
+    "src/core/SkCubicClipper.cpp",
     "src/core/SkCubicMap.cpp",
     "src/core/SkEdge.cpp",
     "src/core/SkEdgeBuilder.cpp",

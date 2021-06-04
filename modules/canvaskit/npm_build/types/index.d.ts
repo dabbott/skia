@@ -3194,6 +3194,48 @@ export interface FontMgrFactory {
  */
 export interface ImageFilterFactory {
     /**
+     *  Create a filter from a shader.
+     *  @param shader       The input shader.
+     */
+    MakeShader(shader: Shader): ImageFilter;
+
+    /**
+     *  Create a blend of two image filters.
+     *  @param blendMode - BlendMode combining the two filters
+     *  @param background - Background filter (dst)
+     *  @param foreground - Foreground filter (src)
+     */
+    MakeBlend(blendMode: BlendMode, background: ImageFilter, foreground: ImageFilter): ImageFilter;
+
+    /**
+     *  Create a filter that draws a drop shadow under the input content. This filter produces an
+     *  image that includes the inputs' content.
+     *  @param dx       The X offset of the shadow.
+     *  @param dy       The Y offset of the shadow.
+     *  @param sigmaX   The blur radius for the shadow, along the X axis.
+     *  @param sigmaY   The blur radius for the shadow, along the Y axis.
+     *  @param color    The color of the drop shadow.
+     *  @param input    The input filter, or will use the source bitmap if this is null.
+     */
+    MakeDropShadow(dx: number, dy: number, sigmaX: number, sigmaY: number, 
+                   color: InputColor, input: ImageFilter | null): ImageFilter;
+
+    /**
+     *  Create a filter that renders a drop shadow, in exactly the same manner as MakeDropShadow,
+     *  except that the resulting image does not include the input content. This allows the shadow
+     *  and input to be composed by a filter DAG in a more flexible manner.
+     *  @param dx       The X offset of the shadow.
+     *  @param dy       The Y offset of the shadow.
+     *  @param sigmaX   The blur radius for the shadow, along the X axis.
+     *  @param sigmaY   The blur radius for the shadow, along the Y axis.
+     *  @param color    The color of the drop shadow.
+     *  @param input    The input filter, or will use the source bitmap if this is null.
+     *  @param cropRect Optional rectangle that crops the input and output.
+     */
+     MakeDropShadowOnly(dx: number, dy: number, sigmaX: number, sigmaY: number, 
+                    color: InputColor, input: ImageFilter | null): ImageFilter;
+
+    /**
      * Create a filter that blurs its input by the separate X and Y sigmas. The provided tile mode
      * is used when the blur kernel goes outside the input image.
      *

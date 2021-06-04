@@ -1344,6 +1344,23 @@ EMSCRIPTEN_BINDINGS(Skia) {
                                                          SkTileMode tileMode, sk_sp<SkImageFilter> input)->sk_sp<SkImageFilter> {
             return SkImageFilters::Blur(sigmaX, sigmaY, tileMode, input);
         }))
+        .class_function("_MakeDropShadow", optional_override([](SkScalar dx, SkScalar dy,
+                                           SkScalar sigmaX, SkScalar sigmaY,
+                                           WASMPointerF32 cPtr, sk_sp<SkImageFilter> input)->sk_sp<SkImageFilter> {
+            return SkImageFilters::DropShadow(dx, dy, sigmaX, sigmaY, ptrToSkColor4f(cPtr).toSkColor(), input);
+        }))
+        .class_function("_MakeDropShadowOnly", optional_override([](SkScalar dx, SkScalar dy,
+                                           SkScalar sigmaX, SkScalar sigmaY,
+                                           WASMPointerF32 cPtr, sk_sp<SkImageFilter> input)->sk_sp<SkImageFilter> {
+            return SkImageFilters::DropShadow(dx, dy, sigmaX, sigmaY, ptrToSkColor4f(cPtr).toSkColor(), input);
+        }))
+        .class_function("MakeBlend", optional_override([](SkBlendMode mode, sk_sp<SkImageFilter> background,
+                                           sk_sp<SkImageFilter> foreground)->sk_sp<SkImageFilter> {
+            return SkImageFilters::Blend(mode, background, foreground);
+        }))
+        .class_function("MakeShader", optional_override([](sk_sp<SkShader> shader)->sk_sp<SkImageFilter> {
+            return SkImageFilters::Shader(shader);
+        }))
         .class_function("MakeColorFilter", optional_override([](sk_sp<SkColorFilter> cf,
                                                                 sk_sp<SkImageFilter> input)->sk_sp<SkImageFilter> {
             return SkImageFilters::ColorFilter(cf, input);

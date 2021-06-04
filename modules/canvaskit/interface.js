@@ -794,6 +794,16 @@ CanvasKit.onRuntimeInitialized = function() {
     }
   };
 
+  CanvasKit.ImageFilter.MakeDropShadow = function(dx, dy, sigmaX, sigmaY, color4f, input) {
+    var cPtr = copyColorToWasm(color4f);
+    return CanvasKit.ImageFilter._MakeDropShadow(dx, dy, sigmaX, sigmaY, cPtr, input);
+  };
+
+  CanvasKit.ImageFilter.MakeDropShadowOnly = function(dx, dy, sigmaX, sigmaY, color4f, input) {
+    var cPtr = copyColorToWasm(color4f);
+    return CanvasKit.ImageFilter._MakeDropShadowOnly(dx, dy, sigmaX, sigmaY, cPtr, input);
+  };
+
   CanvasKit.Paint.prototype.getColor = function() {
     this._getColor(_scratchColorPtr);
     return copyColorFromWasm(_scratchColorPtr);
