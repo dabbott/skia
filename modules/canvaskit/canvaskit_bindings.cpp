@@ -1327,6 +1327,11 @@ EMSCRIPTEN_BINDINGS(Skia) {
                                                          SkTileMode tileMode, sk_sp<SkImageFilter> input)->sk_sp<SkImageFilter> {
             return SkImageFilters::Blur(sigmaX, sigmaY, tileMode, input);
         }))
+        .class_function("_MakeDropShadow", optional_override([](SkScalar dx, SkScalar dy,
+                                           SkScalar sigmaX, SkScalar sigmaY,
+                                           WASMPointerF32 cPtr, sk_sp<SkImageFilter> input)->sk_sp<SkImageFilter> {
+            return SkImageFilters::DropShadow(dx, dy, sigmaX, sigmaY, ptrToSkColor4f(cPtr).toSkColor(), input);
+        }))
         .class_function("MakeColorFilter", optional_override([](sk_sp<SkColorFilter> cf,
                                                                 sk_sp<SkImageFilter> input)->sk_sp<SkImageFilter> {
             return SkImageFilters::ColorFilter(cf, input);

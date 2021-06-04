@@ -409,9 +409,11 @@ var CanvasKit = {
     MakeBlur: function() {},
     MakeColorFilter: function() {},
     MakeCompose: function() {},
+    MakeDropShadow: function() {},
     MakeMatrixTransform: function() {},
 
     // private API
+    _MakeDropShadow: function() {},
     _MakeMatrixTransform: function() {},
   },
 
