@@ -410,10 +410,12 @@ var CanvasKit = {
     MakeColorFilter: function() {},
     MakeCompose: function() {},
     MakeDropShadow: function() {},
+    MakeDropShadowOnly: function() {},
     MakeMatrixTransform: function() {},
 
     // private API
     _MakeDropShadow: function() {},
+    _MakeDropShadowOnly: function() {},
     _MakeMatrixTransform: function() {},
   },
 
