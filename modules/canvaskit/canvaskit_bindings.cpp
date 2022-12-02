@@ -1354,9 +1354,22 @@ EMSCRIPTEN_BINDINGS(Skia) {
                                            WASMPointerF32 cPtr, sk_sp<SkImageFilter> input)->sk_sp<SkImageFilter> {
             return SkImageFilters::DropShadow(dx, dy, sigmaX, sigmaY, ptrToSkColor4f(cPtr).toSkColor(), input);
         }))
+        .class_function("MakeArithmetic", optional_override([](SkScalar k1, SkScalar k2, 
+                                            SkScalar k3, SkScalar k4, bool enforcePMColor,
+                                            sk_sp<SkImageFilter> background, sk_sp<SkImageFilter> foreground)->sk_sp<SkImageFilter> {
+            return SkImageFilters::Arithmetic(k1, k2, k3, k4, enforcePMColor, background, foreground);
+        }))
         .class_function("MakeBlend", optional_override([](SkBlendMode mode, sk_sp<SkImageFilter> background,
                                            sk_sp<SkImageFilter> foreground)->sk_sp<SkImageFilter> {
             return SkImageFilters::Blend(mode, background, foreground);
+        }))
+        .class_function("MakeErode", optional_override([](SkScalar radiusX, SkScalar radiusY,
+                                           sk_sp<SkImageFilter> input)->sk_sp<SkImageFilter> {
+            return SkImageFilters::Erode(radiusX, radiusY, input);
+        }))
+        .class_function("MakeOffset", optional_override([](SkScalar dx, SkScalar dy,
+                                            sk_sp<SkImageFilter> input)->sk_sp<SkImageFilter> {
+            return SkImageFilters::Offset(dx, dy, input);
         }))
         .class_function("MakeShader", optional_override([](sk_sp<SkShader> shader)->sk_sp<SkImageFilter> {
             return SkImageFilters::Shader(shader);

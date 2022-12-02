@@ -403,12 +403,15 @@ var CanvasKit = {
   },
 
   ImageFilter: {
+    MakeArithmetic: function () {},
     MakeBlur: function () {},
     MakeBlend: function () {},
     MakeColorFilter: function () {},
     MakeCompose: function () {},
     MakeDropShadow: function () {},
     MakeDropShadowOnly: function () {},
+    MakeErode: function () {},
+    MakeOffset: function () {},
     MakeShader: function () {},
     MakeMatrixTransform: function () {},
 
